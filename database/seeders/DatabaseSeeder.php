@@ -3,7 +3,10 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Product;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use HasFactory;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,11 +17,25 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        Product::factory(100)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        DB::table('users')->insert([
+            "name" => "Admin",
+            "email" => "admin@gmail.com",
+            "role" => 'admin',
+            "password" => bcrypt("12345")
+        ]);
+        DB::table('kategoris')->insert([
+            "name" => "4x4",
+            "slug" => "kategori-4x4"
+        ]);
+        DB::table('kategoris')->insert([
+            "name" => "pyramincs",
+            "slug" => "kategori-pyramincs"
+        ]);
+        DB::table('kategoris')->insert([
+            "name" => "mirror",
+            "slug" => "kategori-mirror"
+        ]);
     }
 }
